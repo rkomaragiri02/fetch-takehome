@@ -7,7 +7,7 @@ interface DogCardProps {
 
 export function DogCard({ dog }: DogCardProps) {
   return (
-    <Card className="max-w-60 overflow-hidden">
+    <Card className="w-60 overflow-hidden">
       <div className="relative h-60 w-60 overflow-hidden">
         <img
           src={dog.img || "/placeholder.svg"}

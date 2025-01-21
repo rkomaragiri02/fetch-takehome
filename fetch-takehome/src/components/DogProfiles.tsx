@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC, useCallback } from "react";
 
 import { DogCard } from "@/components/DogCard";
 import {
@@ -10,27 +10,26 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import useDogs from "@/hooks/useDogs";
+import { Dog } from "@/types/dog";
 
-const ITEMS_PER_PAGE = 6;
+const ITEMS_PER_PAGE = 25;
 
-const DogProfiles = () => {
-  const { data, isSuccess } = useDogs();
+interface DogProfilesProps {
+  dogs: Dog[] | undefined;
+  total: number;
+}
 
-  const dogs = isSuccess ? data : [];
-
+const DogProfiles: FC<DogProfilesProps> = ({ dogs, total }) => {
   const [currentPage, setCurrentPage] = React.useState(1);
-  const totalPages = Math.ceil(dogs.length / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(total / ITEMS_PER_PAGE);
+  const start = (currentPage - 1) * ITEMS_PER_PAGE;
+  const end = start + ITEMS_PER_PAGE;
 
   // Calculate the current page's dogs
-  const currentDogs = React.useMemo(() => {
-    const start = (currentPage - 1) * ITEMS_PER_PAGE;
-    const end = start + ITEMS_PER_PAGE;
-    return dogs.slice(start, end);
-  }, [currentPage]);
+  const currentDogs = dogs ? dogs.slice(start, end) : [];
 
   // Generate page numbers to display
-  const getPageNumbers = React.useCallback(() => {
+  const getPageNumbers = useCallback(() => {
     const pages = [];
     for (let i = 1; i <= totalPages; i++) {
       if (
@@ -52,11 +51,15 @@ const DogProfiles = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  // 'container mx-auto space-y-8 px-8 py-8'
+
   return (
-    <div className="container mx-auto space-y-8 py-8">
+    <div className="container px-8 py-8">
       <h1 className="mb-8 text-center text-3xl font-bold">Our Dogs</h1>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {/* grid gap-6 md:grid-cols-2 lg:grid-cols-3 */}
+
+      <div className="flex flex-wrap justify-center gap-6 pb-4">
         {currentDogs.map((dog) => (
           <DogCard key={dog.id} dog={dog} />
         ))}
