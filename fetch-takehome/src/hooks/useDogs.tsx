@@ -6,6 +6,7 @@ import { useNavigate } from "react-router";
 
 interface useDogsProps {
   filters?: Filter;
+  from: number;
 }
 
 interface Filter {
@@ -16,16 +17,16 @@ interface Filter {
   sort?: string;
 }
 
-const useDogs = ({ filters }: useDogsProps) => {
+const useDogs = ({ filters, from }: useDogsProps) => {
   const authClient = useAuthHTTPClient();
   const navigate = useNavigate();
 
-  const { data } = useQuery<DogList>({
-    queryKey: ["dogIDs", filters],
+  const { data, isSuccess } = useQuery<DogList>({
+    queryKey: ["dogIDs", filters, from],
     queryFn: () =>
       authClient
         .get(`dogs/search`, {
-          params: filters,
+          params: { ...filters, from },
         })
         .then((res) => {
           if (res.status === 200) {
@@ -35,6 +36,7 @@ const useDogs = ({ filters }: useDogsProps) => {
   });
 
   const dogIDs = data?.resultIds;
+  const total = isSuccess ? data?.total : 0;
 
   const query = useQuery<Dog[]>({
     queryKey: ["dogs", dogIDs],
@@ -49,7 +51,7 @@ const useDogs = ({ filters }: useDogsProps) => {
     enabled: !!dogIDs,
   });
 
-  return query;
+  return { query, total };
 };
 
 export default useDogs;

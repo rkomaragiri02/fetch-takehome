@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from "react";
+import { FC, useCallback } from "react";
 
 import { DogCard } from "@/components/DogCard";
 import {
@@ -11,6 +11,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { Dog } from "@/types/dog";
+import { useAppStore } from "@/store";
 
 const ITEMS_PER_PAGE = 25;
 
@@ -20,13 +21,14 @@ interface DogProfilesProps {
 }
 
 const DogProfiles: FC<DogProfilesProps> = ({ dogs, total }) => {
-  const [currentPage, setCurrentPage] = React.useState(1);
+  // const [currentPage, setCurrentPage] = React.useState(1);
+  const currentPage = useAppStore((state) => state.currentPage);
+  const setCurrentPage = useAppStore((state) => state.setCurrentPage);
+
   const totalPages = Math.ceil(total / ITEMS_PER_PAGE);
-  const start = (currentPage - 1) * ITEMS_PER_PAGE;
-  const end = start + ITEMS_PER_PAGE;
 
   // Calculate the current page's dogs
-  const currentDogs = dogs ? dogs.slice(start, end) : [];
+  const currentDogs = dogs ? dogs : [];
 
   // Generate page numbers to display
   const getPageNumbers = useCallback(() => {
