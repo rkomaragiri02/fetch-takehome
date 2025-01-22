@@ -6,6 +6,7 @@ import LoginPage from "./pages/LoginPage.tsx";
 import HomePage from "./pages/HomePage.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import FavouritesPage from "./pages/FavouritesPage.tsx";
 
 const queryClient = new QueryClient();
 
@@ -16,6 +17,9 @@ createRoot(document.getElementById("root")!).render(
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="/home" element={<HomePage />} />
+          <Route path="/favourites" element={<FavouritesPage />}>
+            <Route path="match" element={<></>} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

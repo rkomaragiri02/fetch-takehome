@@ -1,15 +1,15 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Dog } from "@/types/dog";
 import FavoriteButton from "./FavoriteButton";
-import { useAppStore } from "@/store";
+import { useStore } from "@/store";
 
 interface DogCardProps {
   dog: Dog;
 }
 
 export function DogCard({ dog }: DogCardProps) {
-  const appendFavourites = useAppStore((state) => state.appendFavourites);
-  const favourites = useAppStore((state) => state.favourites);
+  const toggleFavourite = useStore((state) => state.toggleFavourite);
+  const favourites = useStore((state) => state.favourites);
 
   return (
     <Card className="flex w-60 flex-col items-center overflow-hidden">
@@ -33,7 +33,7 @@ export function DogCard({ dog }: DogCardProps) {
         <p className="font-medium">{dog.breed}</p>
         <div className="flex items-center">
           <FavoriteButton
-            onToggle={() => appendFavourites(dog.id)}
+            onToggle={() => toggleFavourite(dog.id)}
             initialState={favourites.includes(dog.id)}
           />
         </div>

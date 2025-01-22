@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-interface AppStore {
+interface Store {
   selectedBreed: string;
   currentPage: number;
   favourites: string[];
@@ -9,13 +9,13 @@ interface AppStore {
 }
 
 interface Actions {
-  setCurrentPage: (page: AppStore["currentPage"]) => void;
-  setSelectedBreed: (breed: AppStore["selectedBreed"]) => void;
-  setSort: (sortType: AppStore["sort"]) => void;
-  appendFavourites: (dogID: string) => void;
+  setCurrentPage: (page: Store["currentPage"]) => void;
+  setSelectedBreed: (breed: Store["selectedBreed"]) => void;
+  setSort: (sortType: Store["sort"]) => void;
+  toggleFavourite: (dogID: string) => void;
 }
 
-export const useAppStore = create<AppStore & Actions>()(
+export const useStore = create<Store & Actions>()(
   persist(
     (set) => ({
       selectedBreed: "",
@@ -25,8 +25,16 @@ export const useAppStore = create<AppStore & Actions>()(
       setCurrentPage: (page) => set(() => ({ currentPage: page })),
       setSelectedBreed: (breed) => set(() => ({ selectedBreed: breed })),
       setSort: (sortType) => set(() => ({ sort: sortType })),
-      appendFavourites: (dogID) =>
-        set((state) => ({ favourites: [...state.favourites, dogID] })),
+      toggleFavourite: (dogID) =>
+        set((state) =>
+          state.favourites.includes(dogID)
+            ? {
+                favourites: state.favourites.filter(
+                  (favDogID) => dogID !== favDogID,
+                ),
+              }
+            : { favourites: [...state.favourites, dogID] },
+        ),
     }),
     { name: "dog store" },
   ),

@@ -6,7 +6,7 @@ import {
 } from "@radix-ui/react-dropdown-menu";
 import { Button } from "./ui/button";
 import { ArrowDownAZ, ArrowUpAZ } from "lucide-react";
-import { useAppStore } from "@/store";
+import { useStore } from "@/store";
 import { Separator } from "./ui/separator";
 
 type SortDirection = "breed:asc" | "breed:desc";
@@ -16,8 +16,8 @@ interface DogSortOptionsProps {
 }
 
 const DogSortOptions = ({ onSortChange = () => {} }: DogSortOptionsProps) => {
-  const sort = useAppStore((state) => state.sort);
-  const setSort = useAppStore((state) => state.setSort);
+  const sort = useStore((state) => state.sort);
+  const setSort = useStore((state) => state.setSort);
 
   const handleSortChange = (direction: SortDirection) => {
     setSort(direction);

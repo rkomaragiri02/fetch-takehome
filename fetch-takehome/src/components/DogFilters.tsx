@@ -9,7 +9,7 @@ import {
   SidebarGroupContent,
   SidebarGroupLabel,
 } from "@/components/ui/sidebar";
-import { useAppStore } from "@/store";
+import { useStore } from "@/store";
 import {
   Collapsible,
   CollapsibleContent,
@@ -21,9 +21,9 @@ interface DogFiltersProps {
 }
 
 export function DogFilters({ breeds }: DogFiltersProps) {
-  const selectedBreed = useAppStore((state) => state.selectedBreed);
-  const onBreedSelect = useAppStore((state) => state.setSelectedBreed);
-  const setCurrentPage = useAppStore((state) => state.setCurrentPage);
+  const selectedBreed = useStore((state) => state.selectedBreed);
+  const onBreedSelect = useStore((state) => state.setSelectedBreed);
+  const setCurrentPage = useStore((state) => state.setCurrentPage);
 
   return (
     <Sidebar className="border-r">

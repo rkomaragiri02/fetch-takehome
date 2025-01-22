@@ -11,7 +11,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { Dog } from "@/types/dog";
-import { useAppStore } from "@/store";
+import { useStore } from "@/store";
 
 const ITEMS_PER_PAGE = 25;
 
@@ -22,8 +22,9 @@ interface DogProfilesProps {
 
 const DogProfiles: FC<DogProfilesProps> = ({ dogs, total }) => {
   // const [currentPage, setCurrentPage] = React.useState(1);
-  const currentPage = useAppStore((state) => state.currentPage);
-  const setCurrentPage = useAppStore((state) => state.setCurrentPage);
+  const currentPage = useStore((state) => state.currentPage);
+  const setCurrentPage = useStore((state) => state.setCurrentPage);
+  const selectedBreed = useStore((state) => state.selectedBreed);
 
   const totalPages = Math.ceil(total / ITEMS_PER_PAGE);
 
@@ -54,10 +55,13 @@ const DogProfiles: FC<DogProfilesProps> = ({ dogs, total }) => {
   };
 
   // 'container mx-auto space-y-8 px-8 py-8'
+  // text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl
 
   return (
     <div className="container px-8 py-8">
-      <h1 className="mb-8 text-center text-3xl font-bold">Our Dogs</h1>
+      <h1 className="mb-8 px-9 text-3xl font-bold tracking-tighter sm:items-center sm:text-4xl md:text-5xl">
+        {selectedBreed === "" ? "All Breeds" : selectedBreed}
+      </h1>
 
       {/* grid gap-6 md:grid-cols-2 lg:grid-cols-3 */}
 

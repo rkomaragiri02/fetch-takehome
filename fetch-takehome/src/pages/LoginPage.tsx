@@ -50,7 +50,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex w-screen justify-center">
+    <div className="flex h-screen w-screen items-center justify-center">
       <Card className="mx-auto w-full max-w-md">
         <CardHeader>
           <CardTitle className="text-3xl">Hello, Dog Lover!</CardTitle>

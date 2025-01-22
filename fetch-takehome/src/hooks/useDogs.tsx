@@ -2,7 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import useAuthHTTPClient from "./useAuthHTTPClient";
 import { DogList } from "@/types/dogList";
 import { Dog } from "@/types/dog";
-import { useNavigate } from "react-router";
 
 interface useDogsProps {
   filters?: Filter;
@@ -19,7 +18,6 @@ interface Filter {
 
 const useDogs = ({ filters, from }: useDogsProps) => {
   const authClient = useAuthHTTPClient();
-  const navigate = useNavigate();
 
   const { data, isSuccess } = useQuery<DogList>({
     queryKey: ["dogIDs", filters, from],
@@ -42,9 +40,7 @@ const useDogs = ({ filters, from }: useDogsProps) => {
     queryKey: ["dogs", dogIDs],
     queryFn: () =>
       authClient.post("dogs", dogIDs).then((res) => {
-        if (res.status === 401) {
-          navigate("/");
-        } else if (res.status === 200) {
+        if (res.status === 200) {
           return res.data;
         }
       }),
