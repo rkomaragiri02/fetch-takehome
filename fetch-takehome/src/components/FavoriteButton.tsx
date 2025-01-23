@@ -36,6 +36,7 @@ const FavoriteButton = ({
             ? "fill-red-500 stroke-red-500"
             : "stroke-gray-500 hover:stroke-red-500",
         )}
+        aria-label="Heart Icon"
       ></Heart>
     </Button>
   );

@@ -34,12 +34,18 @@ const DogSortOptions = ({ onSortChange = () => {} }: DogSortOptionsProps) => {
             <Button variant="outline" className="w-[180px] justify-between">
               {sort === "breed:asc" ? (
                 <>
-                  <ArrowUpAZ className="mr-2 h-4 w-4" />
+                  <ArrowUpAZ
+                    className="mr-2 h-4 w-4"
+                    aria-label="Ascending Sort"
+                  />
                   Ascending
                 </>
               ) : (
                 <>
-                  <ArrowDownAZ className="mr-2 h-4 w-4" />
+                  <ArrowDownAZ
+                    className="mr-2 h-4 w-4"
+                    aria-label="Descending Sort"
+                  />
                   Descending
                 </>
               )}
@@ -50,14 +56,17 @@ const DogSortOptions = ({ onSortChange = () => {} }: DogSortOptionsProps) => {
               onClick={() => handleSortChange("breed:asc")}
               className="cursor-pointer p-1"
             >
-              <ArrowUpAZ className="mr-2 h-4 w-4" />
+              <ArrowUpAZ className="mr-2 h-4 w-4" aria-label="Ascending Sort" />
               Ascending
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() => handleSortChange("breed:desc")}
               className="cursor-pointer"
             >
-              <ArrowDownAZ className="mr-2 h-4 w-4" />
+              <ArrowDownAZ
+                className="mr-2 h-4 w-4"
+                aria-label="Descending Sort"
+              />
               Descending
             </DropdownMenuItem>
           </DropdownMenuContent>

@@ -37,7 +37,10 @@ export function DogFilters({ breeds }: DogFiltersProps) {
               <CollapsibleTrigger>
                 Breed{" "}
                 <span>
-                  <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+                  <ChevronDown
+                    className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180"
+                    aria-label="dropdown icon"
+                  />
                 </span>
               </CollapsibleTrigger>
             </SidebarGroupLabel>
@@ -57,6 +60,7 @@ export function DogFilters({ breeds }: DogFiltersProps) {
                         "mr-2 h-4 w-4",
                         !selectedBreed ? "opacity-100" : "opacity-0",
                       )}
+                      aria-label={"Checked Status"}
                     />
                     All Breeds
                   </Button>
@@ -78,6 +82,7 @@ export function DogFilters({ breeds }: DogFiltersProps) {
                           "mr-2 h-4 w-4",
                           selectedBreed === breed ? "opacity-100" : "opacity-0",
                         )}
+                        aria-label={"Checked Status"}
                       />
                       {breed}
                     </Button>

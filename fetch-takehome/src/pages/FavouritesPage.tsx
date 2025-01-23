@@ -73,7 +73,11 @@ const FavouritesPage = () => {
         </p>
       </div>
       <div className="p-5">
-        <Button size="lg" variant="destructive">
+        <Button
+          size="lg"
+          variant="destructive"
+          onClick={() => navigate("match")}
+        >
           Find a match
         </Button>
       </div>

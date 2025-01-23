@@ -5,14 +5,17 @@ import { useStore } from "@/store";
 
 interface DogCardProps {
   dog: Dog;
+  className?: string;
 }
 
-export function DogCard({ dog }: DogCardProps) {
+export function DogCard({ dog, className = "" }: DogCardProps) {
   const toggleFavourite = useStore((state) => state.toggleFavourite);
   const favourites = useStore((state) => state.favourites);
 
   return (
-    <Card className="flex w-60 flex-col items-center overflow-hidden">
+    <Card
+      className={`flex w-60 flex-col items-center overflow-hidden ${className}`}
+    >
       <div className="relative h-60 w-60 overflow-hidden">
         <img
           src={dog.img || "/placeholder.svg"}
