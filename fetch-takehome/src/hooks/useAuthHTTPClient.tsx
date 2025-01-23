@@ -6,7 +6,7 @@ const useAuthHTTPClient = () => {
   const navigate = useNavigate();
 
   const authClient = axios.create({
-    baseURL: __BASE_API_URL,
+    baseURL: import.meta.env.VITE_API_URL,
     withCredentials: true,
     headers: {
       "Content-Type": "application/json",
