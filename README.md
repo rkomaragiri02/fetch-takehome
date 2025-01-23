@@ -1,7 +1,7 @@
 # Fetch Takehome
  Code for a website to find the perfect pet for you!
 
-Hosted Website: [link here]
+Hosted Website: https://fetch-takehome-iota.vercel.app/
 
 # To Test Locally
  **Requirements**
@@ -9,7 +9,7 @@ Hosted Website: [link here]
 - Web browser: Chrome / Firefox / Edge / Safari (latest)
 
 **Environment variables**
-This project uses environment variables to store the base URL. Create a .env file at the root of the project folder and add `VITE_BASE_URL = 'https://frontend-take-home-service.fetch.com'` to it
+This project uses environment variables to store the base URL. Create a .env file at the root of the project folder and add `VITE_API_URL = 'https://frontend-take-home-service.fetch.com'` to it
 
 **Steps**
 
