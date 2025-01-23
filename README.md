@@ -10,7 +10,7 @@ Hosted Website: [link here]
 
 **Steps**
 
-1) `git clone https://github.com/rkomaragiri02/fetch-takehome.git`
-2) `cd fetch-takehome`
-3) `npm i`
-4) `npm run dev`
+1) Clone this repository: `git clone https://github.com/rkomaragiri02/fetch-takehome.git`
+2) Move into project folder: `cd fetch-takehome`
+3) Install all dependecies: `npm i`
+4) Run the Vite local development server: `npm run dev`
