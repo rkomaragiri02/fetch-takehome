@@ -3,7 +3,7 @@
 
 Hosted Website: https://fetch-takehome-iota.vercel.app/
 
-# To Test Locally
+## To Test Locally
  **Requirements**
 - Node.js version 20 LTS
 - Web browser: Chrome / Firefox / Edge / Safari (latest)
