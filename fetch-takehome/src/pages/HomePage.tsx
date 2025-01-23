@@ -8,6 +8,7 @@ import useDogBreeds from "@/hooks/useDogBreeds";
 import useDogs from "@/hooks/useDogs";
 import { useStore } from "@/store";
 import Error from "./ErrorPage";
+import OnboardingModal from "@/components/onboarding/OnboardingModal";
 
 const ITEMS_PER_PAGE = 25;
 
@@ -32,6 +33,7 @@ const HomePage = () => {
 
   return (
     <>
+      <OnboardingModal />
       <SidebarProvider>
         <div className="relative flex min-h-screen w-screen justify-between">
           <DogFilters breeds={breeds} />

@@ -58,7 +58,7 @@ const DogProfiles: FC<DogProfilesProps> = ({ dogs, total }) => {
   // text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl
 
   return (
-    <div className="container px-8 py-8">
+    <main className="container px-8 py-8">
       <h1 className="mb-8 px-9 text-3xl font-bold tracking-tighter sm:items-center sm:text-4xl md:text-5xl">
         {selectedBreed === "" ? "All Breeds" : selectedBreed}
       </h1>
@@ -123,7 +123,7 @@ const DogProfiles: FC<DogProfilesProps> = ({ dogs, total }) => {
           </PaginationItem>
         </PaginationContent>
       </Pagination>
-    </div>
+    </main>
   );
 };
 
