@@ -66,7 +66,7 @@ const MatchPage = () => {
           className={`relative h-full w-full transition-all duration-500 [transform-style:preserve-3d] ${isFlipped ? "[transform:rotateY(180deg)]" : ""} `}
         >
           {/* Front of card */}
-          <Card className="absolute flex h-full w-60 flex-col items-center overflow-hidden [backface-visibility:hidden]">
+          <Card className="absolute flex h-full w-full flex-col items-center overflow-hidden [backface-visibility:hidden]">
             <div className="flex h-full w-full items-center justify-center rounded-lg bg-zinc-100">
               <DogIcon className="h-32 w-32 text-primary" />
             </div>

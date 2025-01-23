@@ -1,7 +1,9 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Dog } from "@/types/dog";
-import FavoriteButton from "./FavoriteButton";
 import { useStore } from "@/store";
+import { Heart, MapPin } from "lucide-react";
+import { Badge } from "./ui/badge";
+import { Button } from "./ui/button";
 
 interface DogCardProps {
   dog: Dog;
@@ -11,36 +13,57 @@ interface DogCardProps {
 export function DogCard({ dog, className = "" }: DogCardProps) {
   const toggleFavourite = useStore((state) => state.toggleFavourite);
   const favourites = useStore((state) => state.favourites);
+  const isFavourited = favourites.includes(dog.id);
 
   return (
-    <Card
-      className={`flex w-60 flex-col items-center overflow-hidden ${className}`}
-    >
-      <div className="relative h-60 w-60 overflow-hidden">
-        <img
-          src={dog.img || "/placeholder.svg"}
-          alt={`Photo of ${dog.name}`}
-          className="object-cover"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        />
-      </div>
-      <CardHeader>
-        <CardTitle className="flex items-center justify-between gap-6">
-          <h3>{dog.name}</h3>
-          <span className="text-base font-normal text-muted-foreground">
-            {dog.age} years old
-          </span>
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="flex flex-col items-center justify-center space-y-4">
-        <p className="font-medium">{dog.breed}</p>
-        <div className="flex items-center">
-          <FavoriteButton
-            onToggle={() => toggleFavourite(dog.id)}
-            initialState={favourites.includes(dog.id)}
+    <div className={`w-full max-w-sm ${className}`}>
+      <Card>
+        <div className="relative aspect-square w-full">
+          <img
+            src={dog.img || "/placeholder.svg?height=400&width=400"}
+            alt={`Photo of ${dog.name}`}
+            className="h-full w-full overflow-hidden rounded-t-lg object-cover"
           />
+          <Button
+            variant="secondary"
+            size="icon"
+            className={`absolute right-4 top-4 rounded-full ${
+              isFavourited
+                ? "bg-red-500 text-primary-foreground hover:bg-red-400/90"
+                : "bg-background/60 backdrop-blur-sm hover:bg-background/80"
+            }`}
+            onClick={() => toggleFavourite(dog.id)}
+            aria-label={
+              isFavourited
+                ? `Remove ${name} from favorites`
+                : `Add ${name} to favorites`
+            }
+          >
+            <Heart
+              className={`h-5 w-5 ${isFavourited ? "fill-current" : ""}`}
+            />
+          </Button>
         </div>
-      </CardContent>
-    </Card>
+        <CardHeader className="flex flex-row items-center gap-4 space-y-0">
+          <div>
+            <h3 className="font-semibold leading-none tracking-tight">
+              {dog.name}
+            </h3>
+            <p className="text-sm text-muted-foreground">{dog.breed}</p>
+          </div>
+        </CardHeader>
+        <CardContent className="grid gap-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <Badge variant="secondary">{dog.age} years old</Badge>
+              <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                <MapPin className="h-4 w-4" />
+                {dog.zip_code}
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
   );
 }
