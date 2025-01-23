@@ -7,6 +7,7 @@ import { DogCard } from "@/components/DogCard";
 import { Dog } from "@/types/dog";
 import { useNavigate } from "react-router";
 import Loader from "@/components/Loader";
+import { Dog as DogIcon } from "lucide-react";
 
 const MatchPage = () => {
   const favouriteList = useStore((state) => state.favourites);
@@ -67,11 +68,7 @@ const MatchPage = () => {
           {/* Front of card */}
           <Card className="absolute flex h-full w-60 flex-col items-center overflow-hidden [backface-visibility:hidden]">
             <div className="flex h-full w-full items-center justify-center rounded-lg bg-zinc-100">
-              <img
-                width="256"
-                alt="Paw-print"
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Paw-print.svg/256px-Paw-print.svg.png?20110605041351"
-              />
+              <DogIcon className="h-32 w-32 text-primary" />
             </div>
           </Card>
 
