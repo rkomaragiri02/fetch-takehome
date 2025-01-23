@@ -14,6 +14,8 @@ This project uses environment variables to store the base URL. Create a .env fil
 **Steps**
 
 1) Clone this repository: `git clone https://github.com/rkomaragiri02/fetch-takehome.git`
-2) Move into project folder: `cd fetch-takehome`
-3) Install all dependecies: `npm i`
-4) Run the Vite local development server: `npm run dev`
+2) Move into project folder:
+`cd fetch-takehome`
+`cd fetch-takehome`
+4) Install all dependecies: `npm i`
+5) Run the Vite local development server: `npm run dev`
