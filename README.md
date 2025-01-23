@@ -16,5 +16,5 @@ This project uses environment variables to store the base URL. Create a .env fil
 1) Clone this repository: `git clone https://github.com/rkomaragiri02/fetch-takehome.git`
 2) Move into project folder: `cd fetch-takehome`
 4) Install all dependecies: `npm i`
-5) Create .env file and add `VITE_BASE_URL = 'https://frontend-take-home-service.fetch.com'` to .env
+5) Create .env file and add `VITE_API_URL = 'https://frontend-take-home-service.fetch.com'` to .env
 7) Run the Vite local development server: `npm run dev`
