@@ -4,7 +4,7 @@ import { defineConfig } from "vite";
 import dotenv from "dotenv";
 dotenv.config();
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(() => {
   return {
     plugins: [react()],
     resolve: {
