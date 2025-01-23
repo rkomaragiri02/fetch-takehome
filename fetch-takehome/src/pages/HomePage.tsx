@@ -2,10 +2,12 @@ import { DogFilters } from "@/components/DogFilters";
 import DogProfiles from "@/components/DogProfiles";
 import DogSortOptions from "@/components/DogSortOptions";
 import FindMatchButton from "@/components/FindMatchButton";
+import Loader from "@/components/Loader";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import useDogBreeds from "@/hooks/useDogBreeds";
 import useDogs from "@/hooks/useDogs";
 import { useStore } from "@/store";
+import Error from "./ErrorPage";
 
 const ITEMS_PER_PAGE = 25;
 
@@ -34,9 +36,14 @@ const HomePage = () => {
         <div className="relative flex min-h-screen w-screen justify-between">
           <DogFilters breeds={breeds} />
           {dogQuery.isPending ? (
-            <span>Loading</span>
+            <div className="flex items-center gap-4">
+              <Loader />
+            </div>
           ) : dogQuery.isError ? (
-            <span>Error Fetching Dogs</span>
+            <Error
+              reset={() => window.location.reload()}
+              message="Failed to fetch dogs"
+            />
           ) : (
             <DogProfiles total={total} dogs={filteredDogs} />
           )}

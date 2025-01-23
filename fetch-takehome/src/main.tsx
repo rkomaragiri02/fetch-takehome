@@ -5,7 +5,6 @@ import { BrowserRouter, Route, Routes } from "react-router";
 import LoginPage from "./pages/LoginPage.tsx";
 import HomePage from "./pages/HomePage.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import FavouritesPage from "./pages/FavouritesPage.tsx";
 import MatchPage from "./pages/MatchPage.tsx";
 

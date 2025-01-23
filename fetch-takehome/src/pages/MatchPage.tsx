@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/card";
 import { DogCard } from "@/components/DogCard";
 import { Dog } from "@/types/dog";
 import { useNavigate } from "react-router";
+import Loader from "@/components/Loader";
 
 const MatchPage = () => {
   const favouriteList = useStore((state) => state.favourites);
@@ -36,7 +37,7 @@ const MatchPage = () => {
     reset={() => window.location.reload()}
   />;
 
-  if (isLoading) return <span>Fetching match</span>;
+  if (isLoading) return <Loader />;
 
   const matchedDog: Dog = data
     ? data[0]
@@ -50,6 +51,12 @@ const MatchPage = () => {
       >
         &larr; Return to browsing
       </button>
+      <h1 className="pb-2 text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+        Your match
+      </h1>
+      <p className="pb-6 text-muted-foreground">
+        It's time! Tap or click the card to find your new best friend
+      </p>
       <div
         className={`relative h-96 w-64 cursor-pointer [perspective:1000px] ${isMatched ? "opacity-60" : ""} `}
         onClick={handleFlip}
@@ -61,9 +68,10 @@ const MatchPage = () => {
           <Card className="absolute flex h-full w-60 flex-col items-center overflow-hidden [backface-visibility:hidden]">
             <div className="flex h-full w-full items-center justify-center rounded-lg bg-zinc-100">
               <img
-                className="h-16 w-16 text-zinc-300"
-                src="/Paw-print.svg"
-              ></img>
+                width="256"
+                alt="Paw-print"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Paw-print.svg/256px-Paw-print.svg.png?20110605041351"
+              />
             </div>
           </Card>
 
