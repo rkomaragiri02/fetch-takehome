@@ -2,11 +2,11 @@ import axios from "axios";
 import { useNavigate } from "react-router";
 
 const useAuthHTTPClient = () => {
-  const base_url = import.meta.env.VITE_BASE_URL;
+  // const base_url = import.meta.env.VITE_BASE_URL;
   const navigate = useNavigate();
 
   const authClient = axios.create({
-    baseURL: base_url,
+    baseURL: __BASE_API_URL,
     withCredentials: true,
     headers: {
       "Content-Type": "application/json",
